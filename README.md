@@ -2136,7 +2136,7 @@ Other Style Guides
     ```
 
   <a name="whitespace--max-len"></a><a name="18.12"></a>
-  - [18.12](#whitespace--max-len) Avoid having lines of code that are longer than 100 characters (including whitespace). eslint: [`max-len`](http://eslint.org/docs/rules/max-len.html) jscs: [`maximumLineLength`](http://jscs.info/rule/maximumLineLength)
+  - [18.12](#whitespace--max-len) Avoid having lines of code that are longer than 120 characters (including whitespace). eslint: [`max-len`](http://eslint.org/docs/rules/max-len.html) jscs: [`maximumLineLength`](http://jscs.info/rule/maximumLineLength)
 
     > Why? This ensures readability and maintainability.
 
@@ -2201,12 +2201,19 @@ Other Style Guides
     ```
 
   <a name="commas--dangling"></a><a name="19.2"></a>
-  - [19.2](#commas--dangling) Additional trailing comma: **Yup.** eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
+  - [19.2](#commas--dangling) Additional trailing comma: Nope eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
 
-    > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don't have to worry about the [trailing comma problem](es5/README.md#commas) in legacy browsers.
+    > Why? We know htat this leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don't have to worry about the [trailing comma problem](es5/README.md#commas) in legacy browsers. But we think the code is cleaner without this.
 
     ```javascript
-    // bad - git diff without trailing comma
+    // bad - git diff with trailing comma
+    const hero = {
+         firstName: 'Florence',
+         lastName: 'Nightingale',
+    +    inventorOf: ['coxcomb chart', 'modern nursing'],
+    };
+
+    // good - git diff without trailing comma
     const hero = {
          firstName: 'Florence',
     -    lastName: 'Nightingale'
@@ -2214,25 +2221,7 @@ Other Style Guides
     +    inventorOf: ['coxcomb chart', 'modern nursing']
     };
 
-    // good - git diff with trailing comma
-    const hero = {
-         firstName: 'Florence',
-         lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb chart', 'modern nursing'],
-    };
-
     // bad
-    const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully'
-    };
-
-    const heroes = [
-      'Batman',
-      'Superman'
-    ];
-
-    // good
     const hero = {
       firstName: 'Dana',
       lastName: 'Scully',
@@ -2241,6 +2230,17 @@ Other Style Guides
     const heroes = [
       'Batman',
       'Superman',
+    ];
+
+    // good
+    const hero = {
+      firstName: 'Dana',
+      lastName: 'Scully'
+    };
+
+    const heroes = [
+      'Batman',
+      'Superman'
     ];
     ```
 
